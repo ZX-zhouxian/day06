@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Student(Sname, Sage) {
+            this.Sname = Sname;
+            this.Sage = Sage;
+        }
+        var father = {
+                money: 1000000,
+                car: "加长林肯",
+            }
+            // Student.prototype = father = {
+            //     money: 1000000,
+            // }
+            // 换妈妈的老公----在没有创建对象之前直接换原型对象
+        Student.prototype = father;
+        var lilei = new Student("lilei", 21);
+        var hmm = new Student("hmm", 22);
+
+        // 换孩子的爹----已经创建了对象 换原型对象
+        // Object.setPrototypeOf(hmm, father);
+        // lilei.__proto__ = Array;
+        console.log(lilei);
+        console.log(lilei.money);
+        console.log(hmm);
+        console.log(hmm.car);
+    </script>
+</body>
+
+</html>

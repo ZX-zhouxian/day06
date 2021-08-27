@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        "use strict"
+        var emp = {
+            eid: 11102,
+            ename: "jack",
+            salary: 1200,
+        }
+        var arr = Object.getOwnPropertyDescriptor(emp, "eid");
+        console.log(arr);
+        Object.defineProperty(emp, "eid", {
+            writable: false,
+            configurable: true,
+        });
+        emp.eid = 120;
+        console.log(emp);
+    </script>
+</body>
+
+</html>

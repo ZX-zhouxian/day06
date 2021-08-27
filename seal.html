@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 保护对象
+        "use strict"
+        var emp = {
+            ename: "小陈",
+            eage: 25,
+            eid: 1002,
+        };
+
+        Object.defineProperties(emp, {
+            ename: {
+                writable: true,
+                enumerable: true,
+            },
+            eid: {
+                writable: true,
+                enumerable: true,
+            },
+
+
+            _eage: {
+                value: emp.eage,
+                writable: true,
+                enumerable: false,
+            },
+            eage: {
+                get: function() {
+                    console.log(`调用了get(),获取到的值是:${this._eage}`);
+                    return this._eage;
+                },
+                set: function(value) {
+                    if (value > 18 && value < 60) {
+                        console.log(`调用了set(),获取到的值是:${value}`);
+                        this._eage = value;
+                    } else {
+                        throw Error(`年龄不适合接触新冠！`);
+                    }
+                }
+            }
+
+        });
+
+        // 禁止删除新的属性  禁止添加新的属性
+        Object.seal(emp);
+        emp.ename = "小赵";
+        emp.eage = 21;
+        emp.eid = "1004";
+        emp.salary = 20000;
+        delete emp.eage;
+        console.log(emp);
+    </script>
+</body>
+
+</html>

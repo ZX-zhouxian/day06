@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        "use strict"
+        // 定义一个员工表
+        var emp = {
+            // 员工id
+            eid: 1011,
+            // 员工姓名
+            ename: "hanhan",
+        }
+
+        // 设置员工的id为不可修改的
+        // 定义属性  emp 的  eid
+        Object.defineProperty(emp, "eid", {
+                // 为不可更改的
+                writable: false,
+            })
+            // 修改员工的id
+        emp.eid = 122;
+        // 在严格模式下强行修改会报错    Cannot assign to read only property 'eid' of object '#<Object>'  不能修改只读属性eid
+        console.log(emp);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        "use strict"
+        var emp = {
+                eid: 1001,
+                ename: "养乐多",
+                salary: 12220,
+            }
+            // 禁止修改员工的id
+        Object.defineProperty(emp, "eid", {
+            writable: false,
+        });
+        var arr = Object.getOwnPropertyDescriptor(emp, "eid");
+        console.log(arr);
+        emp.eid = 122;
+        // 禁止删除员工的姓名
+        delete emp.ename;
+        // 禁止对于员工的工资做遍历
+        for (var key in emp) {
+            console.log(`${key}:${ emp[key]}`);
+        }
+        console.log(emp);
+    </script>
+</body>
+
+</html>

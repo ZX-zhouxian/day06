@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var emp = {
+            //eage年龄属性可以修改 但是必须介于18--60之间
+            eage: 25,
+        }
+        Object.defineProperties(emp, {
+            // 先定义一个存储属性值受保护的半隐藏的隐姓埋名的属性
+            _eage: {
+                // 从现在emp对象的旧属性eage中搬家到这里保护起来
+                value: emp.eage,
+                writable: true,
+                enumerable: false,
+                configurable: false,
+            },
+            // 2找替身  请保镖
+            eage: {
+                get: function() {
+                    console.log(`自动调用了一个get()，返回一次${this._eage}`);
+                    return this._eage;
+                },
+                set: function(value) {
+                    console.log(`自动调用了一个set()，value接受到的值为：${value}`);
+                    if (value >= 18 && value <= 65) {
+                        this._eage = value;
+                    } else {
+                        throw Error(`输入的不合法`);
+                    }
+                },
+                enumerable: true,
+                configurable: false,
+            }
+        });
+        // 输出emp中eage的值
+        console.log(emp.eage);
+        console.log(emp);
+        emp.eage = -2;
+        console.log(emp);
+    </script>
+</body>
+
+</html>

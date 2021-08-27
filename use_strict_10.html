@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var emp = {
+            eage: null, //访问器属性
+        };
+        Object.defineProperties(emp, {
+            // 将真的值藏起来
+            _eage: {
+                // 获取到emp对象中eage的值
+                value: emp.eage,
+                // 设置为可以修改的
+                writable: true,
+                enumerable: false,
+                configurable: false,
+            },
+            // 替身 
+            eage: {
+                get: function() {
+                    console.log(`调用了get（）方法 获取到的值是：${this._eage}`);
+                    return this._eage;
+                },
+                set: function(value) {
+                    console.log(`调用了set（）方法 接受到的值是：${this._eage}`);
+                    if (value > 18 && value < 60) {
+                        this._eage = value;
+                    } else {
+                        throw Error(`年龄大,不能接种新冠！`);
+                    }
+                },
+                enumerable: false,
+                configurable: false,
+            }
+        });
+        console.log(emp);
+        emp.eage = 20;
+        console.log(emp);
+        emp.eage = 2;
+        console.log(emp);
+    </script>
+</body>
+
+</html>

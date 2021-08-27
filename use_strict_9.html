@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        "use  strict"
+        var emp = {
+            eage: 25,
+        };
+        Object.defineProperties(emp, {
+            // 将需要修改值的属性先隐藏起来
+            _eage: {
+                // 获取eage的值
+                value: emp.eage,
+                // 设置属性值是可以更改的
+                writable: true,
+                // 设置属性值为半隐藏的状态
+                enumerable: false,
+                // 设置数值值的状态是不可删除的  对于前前两个值也不可修改
+                configurable: false,
+            },
+
+            // 找替身
+            eage: {
+                // 获取值
+                get: function() {
+                    console.log(`调用了get(),${this._eage}`);
+                    return this._eage;
+                },
+                // 修改值
+                set: function(value) {
+                    console.log(`调用了set(),${value}`);
+                    // 对于用户输入的值进行判断  
+                    if (value > 0 && value < 150) {
+                        // 修改为用户输入的值
+                        this._eage = value;
+                    } else {
+                        throw error(`输入的年龄${value}不合法`);
+                    }
+                },
+                enumerable: false,
+                configurable: false,
+            },
+        });
+        console.log(emp.eage);
+        emp.eage = 160;
+        console.log(emp.eage);
+    </script>
+</body>
+
+</html>

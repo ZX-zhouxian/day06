@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        "use strict"
+        var emp = {
+            eid: 123,
+            ename: "宫本",
+            salary: 12000,
+        }
+
+        Object.defineProperties(emp, {
+            eid: {
+                writable: false,
+                configurable: false,
+            },
+            ename: {
+                configurable: false,
+            },
+            salary: {
+                enumerable: false,
+                configurable: false,
+            }
+        });
+        /*  禁止修改eid
+            禁止删除ename
+            禁止遍历salary
+          */
+        // emp.eid = 1234;
+        // delete emp.ename;
+        for (var key in emp) {
+            console.log(`${key},${emp[key]}`);
+        }
+        // console.log(emp);
+    </script>
+</body>
+
+</html>

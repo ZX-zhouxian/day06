@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        "use strict"
+
+        function Student(Sname, Sage) {
+            this.Sname = Sname; //Cannot set property 'Sname' of undefined at Student  不能给Student undefined的属性为Sname
+            this.Sage = Sage;
+        }
+        var lilei = new Student("lilei", 12);
+        var hmm = new Student("hmm", 21);
+        console.log(lilei);
+        console.log(hmm);
+        console.log(window.Sname);
+        console.log(window.Sage);
+    </script>
+</body>
+
+</html>
